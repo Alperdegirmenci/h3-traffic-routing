@@ -1,9 +1,3 @@
-GitHub deponuzun (repository) **README.md** dosyası, projenizin vitrinidir. Akademik bir çalışmanın yeniden üretilebilirliğini (`reproducibility`), kod kalitesini ve mimari kurgusunu yazılım dünyası standartlarında sunmalıdır.
-
-Aşağıda, projeniz için Markdown formatında, detaylı, profesyonel ve akademik derinliği olan bütünleşik bir `README.md` metni hazırlanmıştır. Bu metni doğrudan deponuzdaki dosyaya yapıştırabilirsiniz.
-
----
-
 # GeoParquet, DuckDB ve Uber H3 Tabanlı Dinamik Rota Optimizasyon Motoru
 
 Bu proje; akıllı şehir mimarilerinde yüksek frekanslı flotan araç telemetri (GPS) akışlarından, ilişkisel veritabanı sunucusu bağımlılığı (`database-less`) olmaksızın anlık trafik hotspot alanlarının tespit edilmesini ve bu analitik katmanların yönlü şebeke graflarına enjekte edilerek çok kriterli dinamik rota optimizasyonunu gerçekleştiren bulut-yerli (`cloud-native`) bir coğrafi bilgi sistemi (CBS) boru hattıdır.
