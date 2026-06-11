@@ -20,13 +20,13 @@ Ham GPS Akışı ──> [Katı Önişleme] ──> [H3 Çoklu Çözünürlük] 
 1. **Katı Önişleme Katmanı:** Sinyal sıçramaları, mükerrer (`duplicate`) kayıtlar ve kinematik uç değerler ($Speed > 140\text{ km/s}$) elenir.
 2. **Çoklu Çözünürlük H3 Dönüşümü:** Sürekli koordinat düzlemi, Uber H3 ile çoklu çözünürlük seviyelerinde ($R8, R9, R10$) tamsayı hash lookup kodlarına indirgenir.
 3. **GeoParquet Veri Modeli:** Devasa veriler disk üzerinde takvim tarihi (`date`) ve saat dilimine (`hour`) göre hiyerarşik olarak bölümlenerek (`partitioned`) sütun tabanlı GeoParquet formatına serileştirilir.
-4. **Vektörize DuckDB OLAP Sorgulama:** *Predicate Pushdown* mekanizması kullanılarak sadece ilgili zaman pencereleri taranır ve hücresel bazda çok kriterli birleşik trafik hotspot skoru ($S_h(t)$) hesaplanır:
+4. **Vektörize DuckDB OLAP Sorgulama:** *Predicate Pushdown* mekanizması kullanılarak sadece ilgili zaman pencereleri taranır ve hücresel bazda çok kriterli birleşik trafik hotspot skoru (S_h(t)) hesaplanır:
 
 $$S_h(t) = w_1 \cdot D_h(t) + w_2 \cdot L_h(t) + w_3 \cdot Q_h(t) + w_4 \cdot P_h(t) + w_5 \cdot R_h(t)$$
 
 
-5. **Ön Hesaplamalı Çizgisel Örnekleme:** Yol segmentleri (`LineString`) boyu boyunca düzenli aralıklarla ($\Delta d$) alt örneğe tabi tutulur ve kesiştiği H3 hücre kümesiyle geometrisiz hash tablolarında eşleştirilir.
-6. **Dinamik Kenar-Maliyet Enjeksiyonu:** Yönlü grafın $G=(V,E)$ kenar ağırlıkları, hücresel hotspot katsayıları ve kavşak sinyalizasyon cezalarıyla hiper-dinamik hale getirilir ($C(e,t)$).
+5. **Ön Hesaplamalı Çizgisel Örnekleme:** Yol segmentleri (`LineString`) boyu boyunca düzenli aralıklarla (Delta d) alt örneğe tabi tutulur ve kesiştiği H3 hücre kümesiyle geometrisiz hash tablolarında eşleştirilir.
+6. **Dinamik Kenar-Maliyet Enjeksiyonu:** Yönlü grafın $G=(V,E)$ kenar ağırlıkları, hücresel hotspot katsayıları ve kavşak sinyalizasyon cezalarıyla hiper-dinamik hale getirilir (C(e,t)).
 7. **Çok Kriterli Rota Optimizasyonu:** Klasik ve H3 duyarlı dinamik Dijkstra algoritmaları koşturulur, koordinat zincirleri **OSRM API** ile sokak şebekesine milimetrik olarak oturtulur (`Map-Matching`).
 8. **Görsel Raporlama Katmanı:** Güzergâhlar metrik matris karşılaştırmasına tabi tutulur ve **MapLibre GL JS** katmanında OpenStreetMap altlığı ile render edilir.
 
